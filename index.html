@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Ledger - Adjusted Dates</title>
+    <title>Bank Ledger - Natural Date Distribution</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@400;700&display=swap');
@@ -141,7 +141,7 @@
 </head>
 <body>
 
-    <!-- Summary Bar -->
+    <!-- Top Summary Bar -->
     <div class="header-bar">
         <div class="flex items-center gap-6">
             <h1 class="text-2xl font-bold text-slate-800">ਖਾਤਾ ਲੇਜ਼ਰ</h1>
@@ -166,7 +166,7 @@
         </div>
     </div>
 
-    <!-- Main Table -->
+    <!-- Main Table Area -->
     <div class="main-content">
         <table>
             <thead>
@@ -179,67 +179,77 @@
                 </tr>
             </thead>
             <tbody id="ledgerBody">
-                <!-- Loaded by JS -->
+                <!-- Data will be loaded by JS -->
             </tbody>
         </table>
 
+        <!-- The End Marker -->
         <div class="end-section">
             <div class="end-text">THE END</div>
-            <p class="text-slate-400 mt-2 text-sm italic">ਸਾਰਾ ਡਾਟਾ (149 ਐਂਟਰੀਆਂ: 12 ਨਵੰਬਰ - 04 ਦਸੰਬਰ) ਉੱਪਰ ਮੌਜੂਦ ਹੈ</p>
+            <p class="text-slate-400 mt-2 text-sm italic">ਕੁੱਲ 149 ਐਂਟਰੀਆਂ (12 ਨਵੰਬਰ - 04 ਦਸੰਬਰ) ਸਫਲਤਾਪੂਰਵਕ ਲੋਡ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ</p>
         </div>
     </div>
 
     <script>
-        // Distributed 149 transactions across 23 days (Nov 12 - Dec 04)
+        // Real Values from PDF
         const rawValues = [
-            {dr: 0, cr: 70.00}, {dr: 0, cr: 30.00}, {dr: 0, cr: 12.00}, {dr: 60.00, cr: 0}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00}, {dr: 15000.00, cr: 0},
-            {dr: 700.00, cr: 0}, {dr: 210.00, cr: 0}, {dr: 0, cr: 400.00}, {dr: 0, cr: 200.00}, {dr: 0, cr: 3700.00}, {dr: 1500.00, cr: 0}, {dr: 5000.00, cr: 0},
-            {dr: 0, cr: 905.00}, {dr: 2900.00, cr: 0}, {dr: 0, cr: 1600.00}, {dr: 0, cr: 2047.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 600.00}, {dr: 50.00, cr: 0},
-            {dr: 0, cr: 100.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 424.00}, {dr: 0, cr: 9450.00}, {dr: 0, cr: 350.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 500.00},
-            {dr: 0, cr: 261.00}, {dr: 1999.00, cr: 0}, {dr: 0, cr: 235.00}, {dr: 0, cr: 1200.00}, {dr: 0, cr: 70.00}, {dr: 40.00, cr: 0}, {dr: 50.00, cr: 0},
-            {dr: 0, cr: 111.00}, {dr: 10.00, cr: 0}, {dr: 5000.00, cr: 0}, {dr: 10000.00, cr: 0}, {dr: 0, cr: 16692.00}, {dr: 0, cr: 12850.00}, {dr: 30.00, cr: 0},
-            {dr: 6700.00, cr: 0}, {dr: 0, cr: 130.00}, {dr: 100.00, cr: 0}, {dr: 860.00, cr: 0}, {dr: 0, cr: 550.00}, {dr: 0, cr: 60.00}, {dr: 0, cr: 1200.00},
-            {dr: 0, cr: 1615.00}, {dr: 50.00, cr: 0}, {dr: 0, cr: 580.00}, {dr: 0, cr: 1290.00}, {dr: 820.00, cr: 0}, {dr: 7485.00, cr: 0}, {dr: 3300.00, cr: 0},
-            {dr: 0, cr: 4606.00}, {dr: 0, cr: 1068.00}, {dr: 0, cr: 134.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 713.00}, {dr: 0, cr: 180.00}, {dr: 0, cr: 757.00},
-            {dr: 0, cr: 200.00}, {dr: 0, cr: 312.00}, {dr: 0, cr: 1633.00}, {dr: 0, cr: 3.00}, {dr: 0, cr: 270.00}, {dr: 272.00, cr: 0}, {dr: 0, cr: 44.00},
-            {dr: 0, cr: 20.00}, {dr: 0, cr: 10000.00}, {dr: 20000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 20.00, cr: 0}, {dr: 170.00, cr: 0}, {dr: 60.00, cr: 0},
-            {dr: 0, cr: 2197.00}, {dr: 0, cr: 1220.00}, {dr: 60.00, cr: 0}, {dr: 0, cr: 1668.00}, {dr: 0, cr: 363.00}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00},
-            {dr: 0, cr: 50.00}, {dr: 0, cr: 500.00}, {dr: 80.00, cr: 0}, {dr: 0, cr: 115.00}, {dr: 0, cr: 5000.00}, {dr: 0, cr: 2500.00}, {dr: 0, cr: 1101.00},
-            {dr: 1500.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 13200.00, cr: 0}, {dr: 0, cr: 1990.00}, {dr: 0, cr: 398.00}, {dr: 0, cr: 221.00}, {dr: 0, cr: 430.00},
-            {dr: 0, cr: 424.00}, {dr: 1500.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 80.00, cr: 0}, {dr: 0, cr: 11293.00}, {dr: 40.00, cr: 0},
-            {dr: 15000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 0, cr: 2800.00}, {dr: 0, cr: 1453.00}, {dr: 0, cr: 240.00}, {dr: 2940.00, cr: 0}, {dr: 0, cr: 875.00},
-            {dr: 0, cr: 750.00}, {dr: 0, cr: 190.00}, {dr: 18400.00, cr: 0}, {dr: 0, cr: 10800.00}, {dr: 0, cr: 13000.00}, {dr: 60.00, cr: 0}, {dr: 10000.00, cr: 0},
-            {dr: 184.00, cr: 0}, {dr: 250.00, cr: 0}, {dr: 0, cr: 1350.00}, {dr: 4300.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 0, cr: 1376.00}, {dr: 0, cr: 426.00},
-            {dr: 4360.00, cr: 0}, {dr: 0, cr: 103.00}, {dr: 400.00, cr: 0}, {dr: 0, cr: 248.00}, {dr: 70.00, cr: 0}, {dr: 0, cr: 20.00}, {dr: 0, cr: 850.00},
-            {dr: 0, cr: 1900.00}, {dr: 1000.00, cr: 0}, {dr: 0, cr: 80.00}, {dr: 0, cr: 800.00}, {dr: 0, cr: 700.00}, {dr: 0, cr: 1000.00}, {dr: 699.00, cr: 0},
-            {dr: 0, cr: 500.00}, {dr: 0, cr: 1450.00}, {dr: 300.90, cr: 0}, {dr: 156.00, cr: 0}, {dr: 35.00, cr: 0}, {dr: 254.50, cr: 0}, {dr: 254.50, cr: 0},
-            {dr: 9000.00, cr: 0}, {dr: 0, cr: 11.00}
+            {dr: 0, cr: 70.00}, {dr: 0, cr: 30.00}, {dr: 0, cr: 12.00}, {dr: 60.00, cr: 0}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00}, {dr: 15000.00, cr: 0}, {dr: 700.00, cr: 0},
+            {dr: 210.00, cr: 0}, {dr: 0, cr: 400.00}, {dr: 0, cr: 200.00}, {dr: 0, cr: 3700.00}, {dr: 1500.00, cr: 0}, {dr: 5000.00, cr: 0}, {dr: 0, cr: 905.00}, {dr: 2900.00, cr: 0},
+            {dr: 0, cr: 1600.00}, {dr: 0, cr: 2047.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 600.00}, {dr: 50.00, cr: 0}, {dr: 0, cr: 100.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 424.00},
+            {dr: 0, cr: 9450.00}, {dr: 0, cr: 350.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 500.00}, {dr: 0, cr: 261.00}, {dr: 1999.00, cr: 0}, {dr: 0, cr: 235.00}, {dr: 0, cr: 1200.00},
+            {dr: 0, cr: 70.00}, {dr: 40.00, cr: 0}, {dr: 50.00, cr: 0}, {dr: 0, cr: 111.00}, {dr: 10.00, cr: 0}, {dr: 5000.00, cr: 0}, {dr: 10000.00, cr: 0}, {dr: 0, cr: 16692.00},
+            {dr: 0, cr: 12850.00}, {dr: 30.00, cr: 0}, {dr: 6700.00, cr: 0}, {dr: 0, cr: 130.00}, {dr: 100.00, cr: 0}, {dr: 860.00, cr: 0}, {dr: 0, cr: 550.00}, {dr: 0, cr: 60.00},
+            {dr: 0, cr: 1200.00}, {dr: 0, cr: 1615.00}, {dr: 50.00, cr: 0}, {dr: 0, cr: 580.00}, {dr: 0, cr: 1290.00}, {dr: 820.00, cr: 0}, {dr: 7485.00, cr: 0}, {dr: 3300.00, cr: 0},
+            {dr: 0, cr: 4606.00}, {dr: 0, cr: 1068.00}, {dr: 0, cr: 134.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 713.00}, {dr: 0, cr: 180.00}, {dr: 0, cr: 757.00}, {dr: 0, cr: 200.00},
+            {dr: 0, cr: 312.00}, {dr: 0, cr: 1633.00}, {dr: 0, cr: 3.00}, {dr: 0, cr: 270.00}, {dr: 272.00, cr: 0}, {dr: 0, cr: 44.00}, {dr: 0, cr: 20.00}, {dr: 0, cr: 10000.00},
+            {dr: 20000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 20.00, cr: 0}, {dr: 170.00, cr: 0}, {dr: 60.00, cr: 0}, {dr: 0, cr: 2197.00}, {dr: 0, cr: 1220.00}, {dr: 60.00, cr: 0},
+            {dr: 0, cr: 1668.00}, {dr: 0, cr: 363.00}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00}, {dr: 0, cr: 50.00}, {dr: 0, cr: 500.00}, {dr: 80.00, cr: 0}, {dr: 0, cr: 115.00},
+            {dr: 0, cr: 5000.00}, {dr: 0, cr: 2500.00}, {dr: 0, cr: 1101.00}, {dr: 1500.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 13200.00, cr: 0}, {dr: 0, cr: 1990.00}, {dr: 0, cr: 398.00},
+            {dr: 0, cr: 221.00}, {dr: 0, cr: 430.00}, {dr: 0, cr: 424.00}, {dr: 1500.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 80.00, cr: 0}, {dr: 0, cr: 11293.00},
+            {dr: 40.00, cr: 0}, {dr: 15000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 0, cr: 2800.00}, {dr: 0, cr: 1453.00}, {dr: 0, cr: 240.00}, {dr: 2940.00, cr: 0}, {dr: 0, cr: 875.00},
+            {dr: 0, cr: 750.00}, {dr: 0, cr: 190.00}, {dr: 18400.00, cr: 0}, {dr: 0, cr: 10800.00}, {dr: 0, cr: 13000.00}, {dr: 60.00, cr: 0}, {dr: 10000.00, cr: 0}, {dr: 184.00, cr: 0},
+            {dr: 250.00, cr: 0}, {dr: 0, cr: 1350.00}, {dr: 4300.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 0, cr: 1376.00}, {dr: 0, cr: 426.00}, {dr: 4360.00, cr: 0}, {dr: 0, cr: 103.00},
+            {dr: 400.00, cr: 0}, {dr: 0, cr: 248.00}, {dr: 70.00, cr: 0}, {dr: 0, cr: 20.00}, {dr: 0, cr: 850.00}, {dr: 0, cr: 1900.00}, {dr: 1000.00, cr: 0}, {dr: 0, cr: 80.00},
+            {dr: 0, cr: 800.00}, {dr: 0, cr: 700.00}, {dr: 0, cr: 1000.00}, {dr: 699.00, cr: 0}, {dr: 0, cr: 500.00}, {dr: 0, cr: 1450.00}, {dr: 300.90, cr: 0}, {dr: 156.00, cr: 0},
+            {dr: 35.00, cr: 0}, {dr: 254.50, cr: 0}, {dr: 254.50, cr: 0}, {dr: 9000.00, cr: 0}, {dr: 0, cr: 11.00}
         ];
+
+        // Distribution requested by user
+        const countsPerDay = [8, 6, 11, 4, 2, 11, 12, 12, 3, 7, 8, 4, 4, 10, 4, 7, 11, 7, 7, 5, 4];
 
         function generateData() {
             const data = [];
             const startDate = new Date(2025, 10, 12); // Nov 12
             let currentIdx = 0;
 
-            for (let i = 0; i < 23; i++) {
+            // Follow user's specific counts for the first 21 days
+            for (let i = 0; i < countsPerDay.length; i++) {
                 const date = new Date(startDate);
                 date.setDate(startDate.getDate() + i);
                 const dateStr = date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
                 
-                // Assign 6 or 7 transactions per day to fill 149
-                const count = (i % 2 === 0 && currentIdx + 7 <= 149) ? 7 : 6;
-                
+                const count = countsPerDay[i];
                 for (let j = 0; j < count; j++) {
                     if (currentIdx < rawValues.length) {
-                        data.push({
-                            d: dateStr,
-                            dr: rawValues[currentIdx].dr,
-                            cr: rawValues[currentIdx].cr
-                        });
+                        data.push({ d: dateStr, dr: rawValues[currentIdx].dr, cr: rawValues[currentIdx].cr });
                         currentIdx++;
                     }
                 }
             }
+
+            // If any transactions are left, distribute to Dec 3 and Dec 4
+            while (currentIdx < rawValues.length) {
+                const remaining = rawValues.length - currentIdx;
+                const date = new Date(startDate);
+                // Move to Dec 3 or Dec 4
+                const offset = (remaining > 1) ? 21 : 22; 
+                date.setDate(startDate.getDate() + offset);
+                const dateStr = date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+                
+                data.push({ d: dateStr, dr: rawValues[currentIdx].dr, cr: rawValues[currentIdx].cr });
+                currentIdx++;
+            }
+
             return data;
         }
 
