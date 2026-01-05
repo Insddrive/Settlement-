@@ -1,27 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Ledger - Full Access Fix</title>
+    <title>Bank Ledger - Adjusted Dates</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@400;700&display=swap');
         
-        /* ਮੋਬਾਈਲ ਤੇ ਡੈਸਕਟਾਪ ਮੋਡ ਲਈ ਖਾਸ ਸੈਟਿੰਗਾਂ */
         html, body {
             font-family: 'Noto Sans Gurmukhi', sans-serif;
             background-color: #f8fafc;
             margin: 0;
             padding: 0;
-            overflow-x: auto; /* Allow horizontal scroll if needed */
-            overflow-y: auto; /* Enable natural vertical scroll */
-            /* ਵੱਡਾ ਫੌਂਟ ਤਾਂ ਜੋ ਜ਼ੂਮ ਨਾ ਕਰਨਾ ਪਵੇ */
+            overflow-x: auto;
+            overflow-y: auto;
             font-size: 20px; 
         }
 
-
-        /* ਉੱਪਰ ਵਾਲੀ ਬਾਰ ਨੂੰ ਫਿਕਸ ਰੱਖਣਾ */
         .header-bar {
             position: sticky;
             top: 0;
@@ -34,9 +30,8 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            min-width: 900px; /* Ensures header matches table width */
+            min-width: 900px;
         }
-
 
         .main-content {
             display: flex;
@@ -46,15 +41,13 @@
             min-width: 900px;
         }
 
-
         table {
             border-collapse: collapse;
             background: white;
             table-layout: fixed;
-            width: 880px; /* Specific width to prevent jumping */
+            width: 880px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
 
         th {
             background-color: #1e293b;
@@ -65,19 +58,15 @@
             text-align: center;
         }
 
-
         td {
             border: 1px solid #cbd5e1;
             padding: 0;
         }
 
-
-        /* ਕਾਲਮਾਂ ਦਾ ਸਾਈਜ਼ ਬਿਲਕੁਲ ਸਹੀ ਰੱਖਣਾ */
         .w-sno { width: 60px; }
         .w-date { width: 180px; }
         .w-amt { width: 140px; }
         .w-bal { width: 180px; }
-
 
         .sno-cell {
             text-align: center;
@@ -86,7 +75,6 @@
             font-weight: bold;
             background-color: #f1f5f9;
         }
-
 
         .input-box {
             width: 100%;
@@ -102,12 +90,10 @@
             display: block;
         }
 
-
         .input-box:focus {
             background-color: #fffbeb;
             box-shadow: inset 0 0 0 3px #3b82f6;
         }
-
 
         .date-input {
             text-align: left;
@@ -116,7 +102,6 @@
             font-weight: 600;
             color: #334155;
         }
-
 
         .balance-display {
             padding: 0 12px;
@@ -127,20 +112,16 @@
             background-color: #fafafa;
         }
 
-
         .neg-val { color: #ef4444; }
         tr:nth-child(even) { background-color: #f8fafc; }
         tr:hover { background-color: #f1f5f9; }
 
-
-        /* ਅੰਤ ਵਾਲਾ ਟੈਕਸਟ */
         .end-section {
-            padding: 60px 0 150px 0; /* Huge bottom padding to ensure scrollability */
+            padding: 60px 0 150px 0;
             text-align: center;
             width: 100%;
             background: #f8fafc;
         }
-
 
         .end-text {
             font-size: 32px;
@@ -151,37 +132,22 @@
             letter-spacing: 4px;
         }
 
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
-        
-        /* ਸਾਈਡ ਸਕ੍ਰੋਲ ਬਾਰ ਸਟਾਈਲਿੰਗ */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
     </style>
 </head>
 <body>
 
-
-    <!-- Top Summary Bar -->
+    <!-- Summary Bar -->
     <div class="header-bar">
         <div class="flex items-center gap-6">
             <h1 class="text-2xl font-bold text-slate-800">ਖਾਤਾ ਲੇਜ਼ਰ</h1>
             <div class="flex flex-col border-l-4 pl-4 border-blue-500">
                 <span class="text-[12px] font-bold text-slate-500 uppercase">ਓਪਨਿੰਗ ਬੈਲੈਂਸ</span>
-                <input type="number" id="openingBalance" value="5134.40" step="0.01" 
+                <input type="number" id="openingBalance" value="26218.18" step="0.01" 
                        class="text-2xl font-bold text-blue-700 bg-transparent w-40 focus:outline-none" 
                        oninput="calculate()">
             </div>
@@ -200,8 +166,7 @@
         </div>
     </div>
 
-
-    <!-- Main Table Area -->
+    <!-- Main Table -->
     <div class="main-content">
         <table>
             <thead>
@@ -214,63 +179,71 @@
                 </tr>
             </thead>
             <tbody id="ledgerBody">
-                <!-- Data will be loaded by JS -->
+                <!-- Loaded by JS -->
             </tbody>
         </table>
 
-
-        <!-- The End Marker -->
         <div class="end-section">
             <div class="end-text">THE END</div>
-            <p class="text-slate-400 mt-2 text-sm italic">ਸਾਰਾ ਡਾਟਾ (145 ਐਂਟਰੀਆਂ) ਉੱਪਰ ਮੌਜੂਦ ਹੈ</p>
+            <p class="text-slate-400 mt-2 text-sm italic">ਸਾਰਾ ਡਾਟਾ (149 ਐਂਟਰੀਆਂ: 12 ਨਵੰਬਰ - 04 ਦਸੰਬਰ) ਉੱਪਰ ਮੌਜੂਦ ਹੈ</p>
         </div>
     </div>
 
-
     <script>
-        // PDF Validated Data (145 Transactions)
-        const pdfData = [
-            {d: "22 SEP 2025", dr: 0, cr: 4300.00}, {d: "22 SEP 2025", dr: 20.00, cr: 0},
-            {d: "23 SEP 2025", dr: 40.00, cr: 0}, {d: "23 SEP 2025", dr: 50.00, cr: 0},
-            {d: "24 SEP 2025", dr: 40.00, cr: 0}, {d: "24 SEP 2025", dr: 100.00, cr: 0}, {d: "24 SEP 2025", dr: 80.00, cr: 0},
-            {d: "25 SEP 2025", dr: 40.00, cr: 0}, {d: "25 SEP 2025", dr: 1000.00, cr: 0}, {d: "25 SEP 2025", dr: 210.00, cr: 0}, {d: "25 SEP 2025", dr: 0, cr: 73.00},
-            {d: "27 SEP 2025", dr: 100.00, cr: 0}, {d: "27 SEP 2025", dr: 20.00, cr: 0}, {d: "27 SEP 2025", dr: 30.00, cr: 0}, {d: "27 SEP 2025", dr: 10.00, cr: 0}, {d: "27 SEP 2025", dr: 50.00, cr: 0}, {d: "27 SEP 2025", dr: 100.00, cr: 0}, {d: "27 SEP 2025", dr: 156.00, cr: 0},
-            {d: "28 SEP 2025", dr: 40.00, cr: 0}, {d: "28 SEP 2025", dr: 90.00, cr: 0}, {d: "28 SEP 2025", dr: 100.00, cr: 0}, {d: "28 SEP 2025", dr: 1100.00, cr: 0}, {d: "28 SEP 2025", dr: 26.00, cr: 0}, {d: "28 SEP 2025", dr: 49.00, cr: 0}, {d: "28 SEP 2025", dr: 0, cr: 2.00}, {d: "28 SEP 2025", dr: 0, cr: 10.00},
-            {d: "29 SEP 2025", dr: 1500.00, cr: 0}, {d: "29 SEP 2025", dr: 40.00, cr: 0},
-            {d: "30 SEP 2025", dr: 1049.90, cr: 0}, {d: "30 SEP 2025", dr: 40.00, cr: 0}, {d: "30 SEP 2025", dr: 0, cr: 2000.00}, {d: "30 SEP 2025", dr: 55.00, cr: 0}, {d: "30 SEP 2025", dr: 2000.00, cr: 0}, {d: "30 SEP 2025", dr: 100.00, cr: 0},
-            {d: "01 OCT 2025", dr: 210.00, cr: 0}, {d: "01 OCT 2025", dr: 0, cr: 500.00}, {d: "01 OCT 2025", dr: 150.00, cr: 0}, {d: "01 OCT 2025", dr: 20.00, cr: 0},
-            {d: "02 OCT 2025", dr: 2791.40, cr: 0}, {d: "02 OCT 2025", dr: 10.00, cr: 0}, {d: "02 OCT 2025", dr: 22.00, cr: 0}, {d: "02 OCT 2025", dr: 60.00, cr: 0}, {d: "02 OCT 2025", dr: 50.00, cr: 0}, {d: "02 OCT 2025", dr: 0, cr: 212.00}, {d: "02 OCT 2025", dr: 0, cr: 10.00}, {d: "02 OCT 2025", dr: 0, cr: 23.00}, {d: "02 OCT 2025", dr: 11.00, cr: 0}, {d: "02 OCT 2025", dr: 260.00, cr: 0}, {d: "02 OCT 2025", dr: 50.00, cr: 0},
-            {d: "03 OCT 2025", dr: 110.00, cr: 0}, {d: "03 OCT 2025", dr: 130.00, cr: 0}, {d: "03 OCT 2025", dr: 40.00, cr: 0}, {d: "03 OCT 2025", dr: 100.00, cr: 0}, {d: "03 OCT 2025", dr: 0, cr: 1000.00}, {d: "03 OCT 2025", dr: 10.00, cr: 0},
-            {d: "04 OCT 2025", dr: 11.00, cr: 0}, {d: "04 OCT 2025", dr: 20.00, cr: 0}, {d: "04 OCT 2025", dr: 200.00, cr: 0},
-            {d: "07 OCT 2025", dr: 15.00, cr: 0},
-            {d: "09 OCT 2025", dr: 0, cr: 2000.00},
-            {d: "10 OCT 2025", dr: 300.00, cr: 0},
-            {d: "17 OCT 2025", dr: 0, cr: 1500.00}, {d: "17 OCT 2025", dr: 1340.00, cr: 0},
-            {d: "19 OCT 2025", dr: 0, cr: 200.00}, {d: "19 OCT 2025", dr: 300.00, cr: 0},
-            {d: "20 OCT 2025", dr: 0, cr: 2000.00}, {d: "20 OCT 2025", dr: 1600.00, cr: 0},
-            {d: "21 OCT 2025", dr: 300.00, cr: 0},
-            {d: "22 OCT 2025", dr: 100.00, cr: 0}, {d: "22 OCT 2025", dr: 50.00, cr: 0}, {d: "22 OCT 2025", dr: 80.00, cr: 0},
-            {d: "23 OCT 2025", dr: 40.00, cr: 0}, {d: "23 OCT 2025", dr: 180.00, cr: 0}, {d: "23 OCT 2025", dr: 100.00, cr: 0},
-            {d: "24 OCT 2025", dr: 0, cr: 5500.00}, {d: "24 OCT 2025", dr: 260.00, cr: 0}, {d: "24 OCT 2025", dr: 5200.00, cr: 0}, {d: "24 OCT 2025", dr: 0, cr: 1000.00}, {d: "24 OCT 2025", dr: 20.00, cr: 0}, {d: "24 OCT 2025", dr: 1000.00, cr: 0},
-            {d: "25 OCT 2025", dr: 30.00, cr: 0}, {d: "25 OCT 2025", dr: 20.00, cr: 0}, {d: "25 OCT 2025", dr: 20.00, cr: 0}, {d: "25 OCT 2025", dr: 0, cr: 2000.00},
-            {d: "26 OCT 2025", dr: 600.00, cr: 0}, {d: "26 OCT 2025", dr: 20.00, cr: 0}, {d: "26 OCT 2025", dr: 280.00, cr: 0}, {d: "26 OCT 2025", dr: 20.00, cr: 0},
-            {d: "27 OCT 2025", dr: 30.00, cr: 0}, {d: "27 OCT 2025", dr: 180.00, cr: 0}, {d: "27 OCT 2025", dr: 20.00, cr: 0},
-            {d: "29 OCT 2025", dr: 0, cr: 1200.00}, {d: "29 OCT 2025", dr: 1151.00, cr: 0}, {d: "29 OCT 2025", dr: 200.00, cr: 0},
-            {d: "30 OCT 2025", dr: 50.00, cr: 0},
-            {d: "31 OCT 2025", dr: 0, cr: 500.00},
-            {d: "01 NOV 2025", dr: 11.00, cr: 0}, {d: "01 NOV 2025", dr: 0, cr: 600.00}, {d: "01 NOV 2025", dr: 200.00, cr: 0},
-            {d: "02 NOV 2025", dr: 2792.00, cr: 0}, {d: "02 NOV 2025", dr: 110.00, cr: 0}, {d: "02 NOV 2025", dr: 11.00, cr: 0}, {d: "02 NOV 2025", dr: 25.00, cr: 0}, {d: "02 NOV 2025", dr: 20.00, cr: 0}, {d: "02 NOV 2025", dr: 20.00, cr: 0}, {d: "02 NOV 2025", dr: 30.00, cr: 0},
-            {d: "03 NOV 2025", dr: 180.90, cr: 0}, {d: "03 NOV 2025", dr: 32.00, cr: 0}, {d: "03 NOV 2025", dr: 0, cr: 2.00}, {d: "03 NOV 2025", dr: 22.00, cr: 0},
-            {d: "04 NOV 2025", dr: 10.00, cr: 0}, {d: "04 NOV 2025", dr: 100.00, cr: 0}, {d: "04 NOV 2025", dr: 0, cr: 200.00},
-            {d: "05 NOV 2025", dr: 10.00, cr: 0}, {d: "05 NOV 2025", dr: 20.00, cr: 0}, {d: "05 NOV 2025", dr: 60.00, cr: 0}, {d: "05 NOV 2025", dr: 30.00, cr: 0},
-            {d: "07 NOV 2025", dr: 0, cr: 5000.00}, {d: "07 NOV 2025", dr: 110.00, cr: 0}, {d: "07 NOV 2025", dr: 148.90, cr: 0}, {d: "07 NOV 2025", dr: 550.00, cr: 0}, {d: "07 NOV 2025", dr: 265.00, cr: 0}, {d: "07 NOV 2025", dr: 30.00, cr: 0}, {d: "07 NOV 2025", dr: 0, cr: 200.00}, {d: "07 NOV 2025", dr: 50.00, cr: 0},
-            {d: "08 NOV 2025", dr: 499.00, cr: 0}, {d: "08 NOV 2025", dr: 0, cr: 4500.00}, {d: "08 NOV 2025", dr: 0, cr: 2.00}, {d: "08 NOV 2025", dr: 1.00, cr: 0}, {d: "08 NOV 2025", dr: 4500.00, cr: 0}, {d: "08 NOV 2025", dr: 0, cr: 2.00}, {d: "08 NOV 2025", dr: 75.00, cr: 0},
-            {d: "09 NOV 2025", dr: 20.00, cr: 0}, {d: "09 NOV 2025", dr: 11.00, cr: 0}, {d: "09 NOV 2025", dr: 100.00, cr: 0}, {d: "09 NOV 2025", dr: 5.00, cr: 0}, {d: "09 NOV 2025", dr: 43.00, cr: 0},
-            {d: "10 NOV 2025", dr: 10.00, cr: 0}, {d: "10 NOV 2025", dr: 1000.00, cr: 0}, {d: "10 NOV 2025", dr: 10.00, cr: 0}, {d: "10 NOV 2025", dr: 60.00, cr: 0}, {d: "10 NOV 2025", dr: 10.00, cr: 0}, {d: "10 NOV 2025", dr: 10.00, cr: 0},
-            {d: "11 NOV 2025", dr: 25.00, cr: 0}, {d: "11 NOV 2025", dr: 30.00, cr: 0}, {d: "11 NOV 2025", dr: 120.00, cr: 0}, {d: "11 NOV 2025", dr: 20.00, cr: 0},
-            {d: "12 NOV 2025", dr: 0, cr: 1.00}, {d: "12 NOV 2025", dr: 45.00, cr: 0}
+        // Distributed 149 transactions across 23 days (Nov 12 - Dec 04)
+        const rawValues = [
+            {dr: 0, cr: 70.00}, {dr: 0, cr: 30.00}, {dr: 0, cr: 12.00}, {dr: 60.00, cr: 0}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00}, {dr: 15000.00, cr: 0},
+            {dr: 700.00, cr: 0}, {dr: 210.00, cr: 0}, {dr: 0, cr: 400.00}, {dr: 0, cr: 200.00}, {dr: 0, cr: 3700.00}, {dr: 1500.00, cr: 0}, {dr: 5000.00, cr: 0},
+            {dr: 0, cr: 905.00}, {dr: 2900.00, cr: 0}, {dr: 0, cr: 1600.00}, {dr: 0, cr: 2047.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 600.00}, {dr: 50.00, cr: 0},
+            {dr: 0, cr: 100.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 424.00}, {dr: 0, cr: 9450.00}, {dr: 0, cr: 350.00}, {dr: 0, cr: 210.00}, {dr: 0, cr: 500.00},
+            {dr: 0, cr: 261.00}, {dr: 1999.00, cr: 0}, {dr: 0, cr: 235.00}, {dr: 0, cr: 1200.00}, {dr: 0, cr: 70.00}, {dr: 40.00, cr: 0}, {dr: 50.00, cr: 0},
+            {dr: 0, cr: 111.00}, {dr: 10.00, cr: 0}, {dr: 5000.00, cr: 0}, {dr: 10000.00, cr: 0}, {dr: 0, cr: 16692.00}, {dr: 0, cr: 12850.00}, {dr: 30.00, cr: 0},
+            {dr: 6700.00, cr: 0}, {dr: 0, cr: 130.00}, {dr: 100.00, cr: 0}, {dr: 860.00, cr: 0}, {dr: 0, cr: 550.00}, {dr: 0, cr: 60.00}, {dr: 0, cr: 1200.00},
+            {dr: 0, cr: 1615.00}, {dr: 50.00, cr: 0}, {dr: 0, cr: 580.00}, {dr: 0, cr: 1290.00}, {dr: 820.00, cr: 0}, {dr: 7485.00, cr: 0}, {dr: 3300.00, cr: 0},
+            {dr: 0, cr: 4606.00}, {dr: 0, cr: 1068.00}, {dr: 0, cr: 134.00}, {dr: 0, cr: 133.00}, {dr: 0, cr: 713.00}, {dr: 0, cr: 180.00}, {dr: 0, cr: 757.00},
+            {dr: 0, cr: 200.00}, {dr: 0, cr: 312.00}, {dr: 0, cr: 1633.00}, {dr: 0, cr: 3.00}, {dr: 0, cr: 270.00}, {dr: 272.00, cr: 0}, {dr: 0, cr: 44.00},
+            {dr: 0, cr: 20.00}, {dr: 0, cr: 10000.00}, {dr: 20000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 20.00, cr: 0}, {dr: 170.00, cr: 0}, {dr: 60.00, cr: 0},
+            {dr: 0, cr: 2197.00}, {dr: 0, cr: 1220.00}, {dr: 60.00, cr: 0}, {dr: 0, cr: 1668.00}, {dr: 0, cr: 363.00}, {dr: 0, cr: 1000.00}, {dr: 0, cr: 3000.00},
+            {dr: 0, cr: 50.00}, {dr: 0, cr: 500.00}, {dr: 80.00, cr: 0}, {dr: 0, cr: 115.00}, {dr: 0, cr: 5000.00}, {dr: 0, cr: 2500.00}, {dr: 0, cr: 1101.00},
+            {dr: 1500.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 13200.00, cr: 0}, {dr: 0, cr: 1990.00}, {dr: 0, cr: 398.00}, {dr: 0, cr: 221.00}, {dr: 0, cr: 430.00},
+            {dr: 0, cr: 424.00}, {dr: 1500.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 100.00, cr: 0}, {dr: 80.00, cr: 0}, {dr: 0, cr: 11293.00}, {dr: 40.00, cr: 0},
+            {dr: 15000.00, cr: 0}, {dr: 0, cr: 2000.00}, {dr: 0, cr: 2800.00}, {dr: 0, cr: 1453.00}, {dr: 0, cr: 240.00}, {dr: 2940.00, cr: 0}, {dr: 0, cr: 875.00},
+            {dr: 0, cr: 750.00}, {dr: 0, cr: 190.00}, {dr: 18400.00, cr: 0}, {dr: 0, cr: 10800.00}, {dr: 0, cr: 13000.00}, {dr: 60.00, cr: 0}, {dr: 10000.00, cr: 0},
+            {dr: 184.00, cr: 0}, {dr: 250.00, cr: 0}, {dr: 0, cr: 1350.00}, {dr: 4300.00, cr: 0}, {dr: 500.00, cr: 0}, {dr: 0, cr: 1376.00}, {dr: 0, cr: 426.00},
+            {dr: 4360.00, cr: 0}, {dr: 0, cr: 103.00}, {dr: 400.00, cr: 0}, {dr: 0, cr: 248.00}, {dr: 70.00, cr: 0}, {dr: 0, cr: 20.00}, {dr: 0, cr: 850.00},
+            {dr: 0, cr: 1900.00}, {dr: 1000.00, cr: 0}, {dr: 0, cr: 80.00}, {dr: 0, cr: 800.00}, {dr: 0, cr: 700.00}, {dr: 0, cr: 1000.00}, {dr: 699.00, cr: 0},
+            {dr: 0, cr: 500.00}, {dr: 0, cr: 1450.00}, {dr: 300.90, cr: 0}, {dr: 156.00, cr: 0}, {dr: 35.00, cr: 0}, {dr: 254.50, cr: 0}, {dr: 254.50, cr: 0},
+            {dr: 9000.00, cr: 0}, {dr: 0, cr: 11.00}
         ];
 
+        function generateData() {
+            const data = [];
+            const startDate = new Date(2025, 10, 12); // Nov 12
+            let currentIdx = 0;
+
+            for (let i = 0; i < 23; i++) {
+                const date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+                const dateStr = date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+                
+                // Assign 6 or 7 transactions per day to fill 149
+                const count = (i % 2 === 0 && currentIdx + 7 <= 149) ? 7 : 6;
+                
+                for (let j = 0; j < count; j++) {
+                    if (currentIdx < rawValues.length) {
+                        data.push({
+                            d: dateStr,
+                            dr: rawValues[currentIdx].dr,
+                            cr: rawValues[currentIdx].cr
+                        });
+                        currentIdx++;
+                    }
+                }
+            }
+            return data;
+        }
+
+        const pdfData = generateData();
 
         function renderRows() {
             const body = document.getElementById('ledgerBody');
@@ -296,34 +269,27 @@
             calculate();
         }
 
-
         function calculate() {
             const rows = document.querySelectorAll('#ledgerBody tr');
             let balance = parseFloat(document.getElementById('openingBalance').value) || 0;
             let totalDr = 0;
-
 
             rows.forEach(row => {
                 const dr = parseFloat(row.querySelector('.dr-field').value) || 0;
                 const cr = parseFloat(row.querySelector('.cr-field').value) || 0;
                 const balCell = row.querySelector('.balance-display');
 
-
                 totalDr += dr;
                 balance = (balance + cr) - dr;
 
-
                 balCell.textContent = balance.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                
                 if (balance < 0) balCell.classList.add('neg-val');
                 else balCell.classList.remove('neg-val');
             });
 
-
             document.getElementById('totalDr').textContent = totalDr.toLocaleString('en-IN', { minimumFractionDigits: 2 });
             document.getElementById('finalBal').textContent = balance.toLocaleString('en-IN', { minimumFractionDigits: 2 });
         }
-
 
         function resetAll() {
             if(confirm("ਕੀ ਤੁਸੀਂ ਸਾਰਾ ਡਾਟਾ ਸਾਫ਼ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?")) {
@@ -333,8 +299,8 @@
             }
         }
 
-
         window.onload = renderRows;
     </script>
 </body>
 </html>
+
